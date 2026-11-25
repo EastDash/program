@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2e7c7">
+  <meta name="description" content="鎌ケ谷市のおすすめスポットを紹介します。各スポットからGoogleマップのルート案内を開けます。">
+  <title>おすすめスポット｜鎌ケ谷市</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f7f0;
+      --ink: #172a25;
+      --muted: #62726c;
+      --green: #164d3e;
+      --mint: #d6efdf;
+      --blue: #dcecf4;
+      --line: #d9e1d8;
+      --serif: "Shippori Mincho", "Yu Mincho", serif;
+      --sans: "Zen Kaku Gothic New", "Yu Gothic", sans-serif;
+      --mono: "DM Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; color: var(--ink); background: var(--paper); background-image: radial-gradient(#bdcbbf 0.6px, transparent 0.6px); background-size: 15px 15px; font-family: var(--sans); font-size: 16px; line-height: 1.8; }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid #e8794e; outline-offset: 4px; }
+    .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .site-header { position: sticky; z-index: 1; top: 0; border-bottom: 1px solid rgba(23,42,37,.1); background: rgba(244,247,240,.95); backdrop-filter: blur(14px); }
+    .header-inner { display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-mark { display: grid; width: 39px; aspect-ratio: 1; place-items: center; border-radius: 48% 48% 52% 52%; color: var(--green); background: #f0cf69; font-family: var(--serif); font-size: 21px; }
+    .brand-name { display: block; font-size: 16px; font-weight: 800; line-height: 1.35; }
+    .brand-caption { display: block; color: var(--muted); font-family: var(--mono); font-size: 9px; }
+    .main-nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+    .main-nav a { font-size: 12px; font-weight: 700; text-decoration: none; }
+    .main-nav a:hover { color: var(--green); text-decoration: underline; text-underline-offset: 4px; }
+    main { padding-block: 42px 76px; }
+    .feature { display: grid; grid-template-columns: 1.05fr .95fr; align-items: stretch; overflow: hidden; color: white; background: var(--green); }
+    .feature-photo { position: relative; min-width: 0; margin: 0; background: #dce7dc; }
+    .feature-photo img { display: block; width: 100%; height: auto; }
+    .photo-credit { padding: 5px 9px; color: var(--muted); background: rgba(255,255,255,.9); font-size: 10px; line-height: 1.5; }
+    .feature-photo .photo-credit { position: absolute; right: 9px; bottom: 9px; color: white; background: rgba(18,47,40,.82); }
+    .photo-credit a { text-underline-offset: 2px; }
+    .feature-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(24px, 5vw, 55px); }
+    .eyebrow { margin: 0 0 9px; color: #b7efcc; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; }
+    h1 { margin: 0; font-family: var(--serif); font-size: clamp(30px, 4vw, 43px); font-weight: 600; line-height: 1.55; }
+    .intro { margin: 14px 0 20px; color: rgba(255,255,255,.82); font-size: 13px; }
+    .feature-link { display: inline-flex; min-height: 42px; align-items: center; gap: 10px; padding: 0 13px; color: var(--green); background: white; font-size: 11px; font-weight: 700; text-decoration: none; }
+    .feature-link:hover { background: var(--mint); }
+    .section-heading { margin: 48px 0 20px; }
+    .section-kicker { margin: 0 0 5px; color: var(--green); font-family: var(--mono); font-size: 10px; }
+    .section-heading h2 { margin: 0; font-family: var(--serif); font-size: clamp(24px, 3vw, 32px); font-weight: 600; }
+    .section-heading p:last-child { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
+    .spot-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 15px; }
+    .spot-card { display: flex; min-width: 0; flex-direction: column; align-items: stretch; overflow: hidden; border: 1px solid var(--line); background: rgba(255,255,255,.82); box-shadow: 0 8px 24px rgba(23,42,37,.05); }
+    .spot-photo { margin: 0; background: #e5eee7; }
+    .spot-photo img { display: block; width: 100%; height: auto; }
+    .spot-copy { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 18px 19px 19px; }
+    .spot-number { color: var(--green); font-family: var(--mono); font-size: 9px; }
+    .spot-card h3 { margin: 12px 0 5px; font-family: var(--serif); font-size: 17px; line-height: 1.6; }
+    .spot-card p { margin: 0 0 17px; color: var(--muted); font-size: 12px; }
+    .map-link { display: inline-flex; min-height: 42px; align-items: center; gap: 10px; margin-top: auto; padding: 0 13px; color: white; background: var(--green); font-size: 12px; font-weight: 700; text-decoration: none; transition: background .2s ease; }
+    .map-link:hover { background: #236a53; }
+    .map-link span { font-size: 15px; }
+    .outing-guide { margin-top: 54px; padding: clamp(20px, 4vw, 34px); border: 1px solid var(--line); background: rgba(255,255,255,.68); }
+    .outing-guide .section-heading { margin: 0 0 18px; }
+    .outing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .outing-tip { min-height: 120px; padding: 14px 15px; border-top: 2px solid #a4d5b2; background: white; }
+    .outing-tip:nth-child(2) { border-color: #e8794e; }
+    .outing-tip:nth-child(3) { border-color: #7baac8; }
+    .outing-tip span { color: var(--green); font-family: var(--mono); font-size: 10px; }
+    .outing-tip h3 { margin: 5px 0; font-family: var(--serif); font-size: 14px; }
+    .outing-tip p { margin: 0; color: var(--muted); font-size: 11px; }
+    .page-note { margin: 20px 0 0; color: var(--muted); font-size: 11px; }
+    .back-link { display: inline-block; margin-top: 28px; color: var(--green); font-size: 13px; font-weight: 700; text-underline-offset: 4px; }
+    .page-pagination { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 42px; }
+    .page-number, .page-next { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; border: 1px solid var(--line); background: rgba(255,255,255,.75); font-size: 12px; font-weight: 700; text-decoration: none; }
+    .page-number { min-width: 40px; }
+    .page-number[aria-current="page"] { border-color: var(--green); color: white; background: var(--green); }
+    .page-next { gap: 8px; padding-inline: 13px; }
+    .page-number[href]:hover, .page-next:hover { border-color: var(--green); background: white; }
+    .page-number[aria-current="page"]:hover { color: white; background: var(--green); }
+    .site-footer { padding-block: 20px; color: white; background: #122f28; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .footer-brand { font-family: var(--serif); font-size: 15px; font-weight: 600; }
+    .footer-link { color: white; font-size: 11px; text-underline-offset: 4px; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 32px, 600px); }
+      .header-inner { align-items: flex-start; flex-direction: column; gap: 8px; padding-block: 12px; }
+      .main-nav { gap: 7px 17px; }
+      .main-nav a { font-size: 11px; }
+      main { padding-block: 38px 54px; }
+      .feature { grid-template-columns: 1fr; }
+      .feature-photo img { height: auto; }
+      .feature-copy { padding: 24px; }
+      .spot-grid { grid-template-columns: 1fr; gap: 10px; }
+      .spot-copy { padding: 16px; }
+      .section-heading { margin-top: 38px; }
+      .outing-guide { margin-top: 38px; padding: 19px; }
+      .outing-grid { grid-template-columns: 1fr; gap: 8px; }
+      .outing-tip { min-height: 0; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="index.html" aria-label="鎌ケ谷市トップへ戻る">
+        <span class="brand-mark" aria-hidden="true">か</span>
+        <span><span class="brand-name">鎌ケ谷市</span><span class="brand-caption">CHIBA / PEAR TOWN</span></span>
+      </a>
+      <nav class="main-nav" aria-label="メインメニュー">
+        <a href="index.html">トップページ</a>
+        <a href="spots.html" aria-current="page">おすすめスポット</a>
+        <a href="index.html#services">くらしの情報</a>
+        <a href="index.html#safety">安全・安心</a>
+        <a href="index.html#news">お知らせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="feature" aria-labelledby="page-title">
+      <figure class="feature-photo">
+        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Kamagaya-daibutsu03.jpg/1280px-Kamagaya-daibutsu03.jpg" alt="鎌ケ谷大仏。青空の下に大きな座像が見える" fetchpriority="high">
+        <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Kamagaya-daibutsu03.jpg" target="_blank" rel="noopener noreferrer">写真: Higa4 / Kamagaya-daibutsu03</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0</a></figcaption>
+      </figure>
+      <div class="feature-copy">
+        <p class="eyebrow">KAMAGAYA / SPOT GUIDE</p>
+        <h1 id="page-title">ちょっと足をのばして、鎌ケ谷へ。</h1>
+        <p class="intro">歴史ある名所、野球の熱気、木々の中の散歩道。写真と一緒に、まちのおすすめスポットをめぐってみましょう。</p>
+        <a class="feature-link" href="#spot-list">スポットを見る <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section id="spot-list" aria-labelledby="spot-list-title">
+      <div class="section-heading">
+        <p class="section-kicker">LOCAL FAVORITES</p>
+        <h2 id="spot-list-title">まちで見つける、3つの景色</h2>
+        <p>写真の出典・利用条件は、それぞれのクレジットから確認できます。</p>
+      </div>
+      <div class="spot-grid">
+        <article class="spot-card">
+          <figure class="spot-photo">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Kamagaya-daibutsu01.jpg/960px-Kamagaya-daibutsu01.jpg" alt="鎌ケ谷大仏を正面から見た様子" loading="lazy" decoding="async">
+            <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Kamagaya-daibutsu01.jpg" target="_blank" rel="noopener noreferrer">写真: Higa4 / Kamagaya-daibutsu01</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0</a></figcaption>
+          </figure>
+          <div class="spot-copy">
+            <span class="spot-number">01 / LANDMARK</span>
+            <h3>鎌ケ谷大仏</h3>
+            <p>まちの名前にもゆかりのある大仏。周辺の街並みとあわせて散策を楽しめます。</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=%E9%8E%8C%E3%82%B1%E8%B0%B7%E5%A4%A7%E4%BB%8F" target="_blank" rel="noopener noreferrer" aria-label="鎌ケ谷大仏へのルートをGoogleマップで開く（新しいタブ）">Googleマップで案内 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="spot-card">
+          <figure class="spot-photo">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Kamagaya_Fighters_Stadium_002.jpg/960px-Kamagaya_Fighters_Stadium_002.jpg" alt="ファイターズ鎌ケ谷スタジアムの外観" loading="lazy" decoding="async">
+            <figcaption class="photo-credit">写真: <a href="https://commons.wikimedia.org/wiki/File:Kamagaya_Fighters_Stadium_002.jpg" target="_blank" rel="noopener noreferrer">掬茶 / Kamagaya Fighters Stadium 002</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></figcaption>
+          </figure>
+          <div class="spot-copy">
+            <span class="spot-number">02 / BASEBALL</span>
+            <h3>ファイターズ鎌ケ谷スタジアム</h3>
+            <p>野球を身近に感じられるスポット。試合・イベントの日程や入場方法は事前にご確認ください。</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=%E3%83%95%E3%82%A1%E3%82%A4%E3%82%BF%E3%83%BC%E3%82%BA%E9%8E%8C%E3%82%B1%E8%B0%B7%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%A2%E3%83%A0" target="_blank" rel="noopener noreferrer" aria-label="ファイターズ鎌ケ谷スタジアムへのルートをGoogleマップで開く（新しいタブ）">Googleマップで案内 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="spot-card">
+          <figure class="spot-photo">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Shimin_no_Mori_%28Kamagaya%29_01.jpg/960px-Shimin_no_Mori_%28Kamagaya%29_01.jpg" alt="鎌ケ谷市民の森の木々に囲まれた園路" loading="lazy" decoding="async">
+            <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Shimin_no_Mori_(Kamagaya)_01.jpg" target="_blank" rel="noopener noreferrer">写真: Higa4 / Shimin no Mori (Kamagaya) 01</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0</a></figcaption>
+          </figure>
+          <div class="spot-copy">
+            <span class="spot-number">03 / GREEN WALK</span>
+            <h3>市民の森</h3>
+            <p>木々に囲まれた園路を歩きながら、自然の中でひと息つけるスポットです。</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=%E9%8E%8C%E3%82%B1%E8%B0%B7%E5%B8%82%E6%B0%91%E3%81%AE%E6%A3%AE" target="_blank" rel="noopener noreferrer" aria-label="鎌ケ谷市民の森へのルートをGoogleマップで開く（新しいタブ）">Googleマップで案内 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="outing-guide" aria-labelledby="outing-title">
+      <div class="section-heading">
+        <p class="section-kicker">BEFORE YOU GO</p>
+        <h2 id="outing-title">お出かけ前のひとチェック</h2>
+      </div>
+      <div class="outing-grid">
+        <article class="outing-tip">
+          <span>01 / INFORMATION</span>
+          <h3>営業・開催情報を確認</h3>
+          <p>施設の利用時間や試合・イベント情報を、出発前に公式サイトで確認しましょう。</p>
+        </article>
+        <article class="outing-tip">
+          <span>02 / ROUTE</span>
+          <h3>行き方をチェック</h3>
+          <p>Googleマップでルートを確認し、交通状況や移動時間に余裕を持って出発を。</p>
+        </article>
+        <article class="outing-tip">
+          <span>03 / MANNERS</span>
+          <h3>みんなが気持ちよく</h3>
+          <p>施設の案内や周囲の方への配慮を忘れずに、楽しいお出かけにしましょう。</p>
+        </article>
+      </div>
+    </section>
+
+    <p class="page-note">写真の権利表記・利用条件は、各写真のクレジットからご確認いただけます。</p>
+    <a class="back-link" href="index.html">← トップページへ戻る</a>
+    <nav class="page-pagination" aria-label="ページ送り">
+      <a class="page-number" href="index.html" aria-label="1ページ目、トップページ">1</a>
+      <span class="page-number" aria-current="page" aria-label="2ページ目、現在のページ">2</span>
+      <a class="page-next" href="index.html"><span aria-hidden="true">←</span> 前のページ</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">鎌ケ谷市｜まちの情報と、たしかなつながり</div>
+      <a class="footer-link" href="index.html">トップページ</a>
+    </div>
+  </footer>
+</body>
+</html>
